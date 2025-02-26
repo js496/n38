@@ -80,10 +80,10 @@ services:
       - MAX_JOBS=4
       - NCCL_DEBUG=INFO
     command: [
-      "--model", "Qwen/Qwen2.5-1.5B-Instruct",
-      "--port", "1370",
-      "--tensor-parallel-size", "2",
-      "--gpu_memory_utilization", "0.95",
-      "--shm-size", "16gb",
+      --model Qwen/Qwen2.5-1.5B-Instruct,
+      --port 1370,
+      --tensor-parallel-size 2,
+      --shm-size 16gb,
+      --gpu_memory_utilization 0.95
     ]
     restart: unless-stopped
