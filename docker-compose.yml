@@ -7,7 +7,6 @@ services:
     environment:
       - CONTAINER_PORT=6379
       - HOST_PORT=6379
-      - MAX_JOBS=1
     restart: unless-stopped
   
   backend:
@@ -19,7 +18,6 @@ services:
     environment:
       - CONTAINER_PORT=7861
       - HOST_PORT=7861
-      - MAX_JOBS=1
     volumes:      
       - ./backend:/usr/src/app
       - ./backend/logs:/var/log
@@ -46,7 +44,6 @@ services:
       - GRADIO_SERVER_NAME=0.0.0.0
       - CONTAINER_PORT=7860
       - HOST_PORT=7860
-      - MAX_JOBS=1
     volumes:
       - ./frontend:/usr/src/app
       - ./frontend/logs:/var/log
@@ -82,13 +79,11 @@ services:
     environment:
       - MAX_JOBS=4
       - NCCL_DEBUG=INFO
-      - CUDA_LAUNCH_BLOCKING=1
     command: [
       "--model", "Qwen/Qwen2.5-1.5B-Instruct",
       "--port", "1370",
-      "--max-model-len", "8192",
       "--tensor-parallel-size", "2",
-      "--swap-space", "2",
       "--gpu_memory_utilization", "0.95",
+      "--shm-size", "16gb",
     ]
     restart: unless-stopped
